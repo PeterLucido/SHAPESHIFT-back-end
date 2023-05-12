@@ -41,9 +41,23 @@ async function show(req, res) {
   }
 }
 
+async function update(req, res) {
+  try {
+    const day = await Day.findByIdAndUpdate(
+      req.params.blogId,
+      req.body,
+      { new: true }
+    ).populate('date', 'sleep', 'meal', 'exercise', 'notes')
+    res.status(200).json(day)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json(error)
+  }
+}
 
 export {
   index,
   create,
   show,
+  update,
 }
