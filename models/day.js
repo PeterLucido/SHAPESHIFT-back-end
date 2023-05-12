@@ -46,21 +46,22 @@ const mealSchema = new Schema(
 )
 
 const daySchema = new Schema(
-  {
-    rating: {
-      type: Number,
-      required: true,
-    },
-    date: {
-      type: Date,
-      required: true,
-    },
-    owner: { type: Schema.Types.ObjectId, ref: 'Profile' },
-    notes: [noteSchema],
-    sleep: [sleepSchema],
-    meal: [mealSchema],
-  },
-  { timestamps: true }
+  // name: String,
+  // {
+  //   rating: {
+  //     type: Number,
+  //     required: true,
+  //   },
+  //   date: {
+  //     type: Date,
+  //     required: true,
+  //   },
+  //   owner: { type: Schema.Types.ObjectId, ref: 'Profile' },
+  //   notes: [noteSchema],
+  //   sleep: [sleepSchema],
+  //   meal: [mealSchema],
+  // },
+  // { timestamps: true }
 )
 
 const Day = mongoose.model('Day', daySchema)

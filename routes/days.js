@@ -12,7 +12,7 @@ router.use(decodeUserFromToken)
 router.get('/days', checkAuth, daysCtrl.index)
 router.get('/:daysId', checkAuth, daysCtrl.show)
 router.post('/days', checkAuth, daysCtrl.create)
-router.post('/:daysId/notes', checkAuth, daysCtrl.createNote)
+// router.post('/:daysId/notes', checkAuth, daysCtrl.createNote)
 router.put('/:daysId', checkAuth, daysCtrl.update)
 router.delete('/:daysId', checkAuth, daysCtrl.delete)
 
