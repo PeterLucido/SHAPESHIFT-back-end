@@ -30,7 +30,20 @@ async function create(req, res) {
   }
 }
 
+async function show(req, res) {
+  try {
+    const day = await Day.findById(req.params.dayId)
+    .populate('date', 'sleep', 'meal', 'exercise', 'notes')
+    res.status(200).json(day)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json(error)
+  }
+}
+
+
 export {
   index,
   create,
+  show,
 }
