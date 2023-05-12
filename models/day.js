@@ -46,7 +46,7 @@ const mealSchema = new Schema(
 )
 
 const daySchema = new Schema(
-  // name: String,
+  {name: {type: String}}
   // {
   //   rating: {
   //     type: Number,
