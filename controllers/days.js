@@ -3,10 +3,10 @@ import { Day } from "../models/day.js"
 
 async function index(req, res) {
   try {
-    const days = await Day.find({})
+    const day = await Day.find({})
     .populate('date')
     .sort({ date: 'desc' })
-    res.status(200).json(days)
+    res.status(200).json(day)
   } catch (err) {
     console.log(err)
     res.status(500).json(err)
@@ -23,7 +23,7 @@ async function create(req, res) {
       { new: true }
     )
     day.owner = profile
-    res.status(201).json(blog)
+    res.status(201).json(day)
   } catch (error) {
     console.log(error)
     res.status(500).json(error)
@@ -44,7 +44,7 @@ async function show(req, res) {
 async function update(req, res) {
   try {
     const day = await Day.findByIdAndUpdate(
-      req.params.blogId,
+      req.params.dayId,
       req.body,
       { new: true }
     ).populate('date', 'sleep', 'meal', 'exercise', 'notes')
