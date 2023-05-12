@@ -1,5 +1,5 @@
-import { Profile } from "../models/profile"
-import { Day } from "../models/day"
+import { Profile } from "../models/profile.js"
+import { Day } from "../models/day.js"
 
 async function index(req, res) {
   try {
