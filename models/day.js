@@ -17,30 +17,26 @@ const sleepSchema = new Schema(
       type: Number,
       required: true
     },
-    sleepRating: {
-      type: Number,
-    },
+    sleepRating: Number
   },
   { timestamps: true }
 )
 
 const mealSchema = new Schema(
   {
-    waterIntake: {
-      type: String,
-    },
-    breakfast: {
-      type: String,
-    },
-    lunch: {
-      type: String,
-    },
-    dinner: {
-      type: String,
-    },
-    snacks: {
-      type: String,
-    },
+    waterIntake: String,
+    breakfast: String,
+    lunch: String,
+    dinner: String,
+    snacks: String,
+  },
+  { timestamps: true }
+)
+
+const exerciseSchema = new Schema(
+  {
+    timeSpent: Number,
+    typeOfExercise: String
   },
   { timestamps: true }
 )
@@ -59,6 +55,7 @@ const daySchema = new Schema(
     notes: [noteSchema],
     sleep: [sleepSchema],
     meal: [mealSchema],
+    exercise: [exerciseSchema]
   },
   { timestamps: true }
 )

@@ -15,7 +15,7 @@ async function index(req, res) {
 
 async function create(req, res) {
   try {
-    req.body.ower = req.user.profile
+    req.body.owner = req.user.profile
     const day = await Day.create(req.body)
     const profile = await Profile.findByIdAndUpdate(
       req.user.profile,
@@ -23,6 +23,7 @@ async function create(req, res) {
       { new: true }
     )
     day.owner = profile
+    console.log(day)
     res.status(201).json(day)
   } catch (error) {
     console.log(error)
