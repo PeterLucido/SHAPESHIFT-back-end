@@ -6,7 +6,6 @@ async function index(req, res) {
     const profileId = req.user.profile._id
     const day = await Day.find({ owner: profileId })
     .populate('date')
-    .sort({ date: 'desc' })
     res.status(200).json(day)
   } catch (err) {
     console.log(err)
