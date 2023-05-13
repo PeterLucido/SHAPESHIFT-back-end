@@ -154,4 +154,5 @@ export {
   createMeal,
   createExercise,
   updateNote,
+  updateSleep,
 }
