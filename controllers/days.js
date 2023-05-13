@@ -143,6 +143,19 @@ async function updateSleep (req, res) {
   }
 }
 
+async function updateMeal (req, res) {
+  try {
+    const day = await Day.findById(req.params.dayId)
+    const meal = day.meal.id(req.params.mealId)
+    meal.set(req.body)
+    await day.save()
+    res.status(200).json(day)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json(error)
+  }
+}
+
 export {
   index,
   create,
@@ -154,4 +167,6 @@ export {
   createMeal,
   createExercise,
   updateNote,
+  updateSleep,
+  updateMeal,
 }
