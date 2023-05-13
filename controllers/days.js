@@ -69,10 +69,24 @@ async function deleteDay(req, res) {
   }
 }
 
+async function createNote (req, res) {
+  try {
+    const day = await Day.findById(req.params.dayId)
+    day.notes.push(req.body)
+    await day.save()
+    res.status(201).json(day)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json(error)
+  }
+}
+
+
 export {
   index,
   create,
   show,
   update,
   deleteDay as delete,
+  createNote,
 }
