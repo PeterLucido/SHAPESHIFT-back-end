@@ -3,7 +3,8 @@ import { Day } from "../models/day.js"
 
 async function index(req, res) {
   try {
-    const day = await Day.find({})
+    const profileId = req.user.profile._id
+    const day = await Day.find({ owner: profileId })
     .populate('date')
     res.status(200).json(day)
   } catch (err) {
