@@ -105,6 +105,17 @@ async function createMeal (req, res) {
   }
 }
 
+async function createExercise (req, res) {
+  try {
+    const day = await Day.findById(req.params.dayId)
+    day.exercise.push(req.body)
+    await day.save()
+    res.status(201).json(day)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json(error)
+  }
+}
 
 export {
   index,
@@ -115,4 +126,5 @@ export {
   createNote,
   createSleep,
   createMeal,
+  createExercise,
 }
