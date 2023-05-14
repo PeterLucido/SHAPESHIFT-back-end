@@ -33,12 +33,13 @@ async function create(req, res) {
 
 async function show(req, res) {
   try {
-    const day = await Day.findById(req.params.dayId)
-    .populate('date', 'sleep', 'meal', 'exercise', 'notes')
-    res.status(200).json(day)
+    const day = await Day.findById(req.params.dayId).populate(['owner', 'sleep', 'meal', 'exercise', 'notes']);
+    // console.log();
+    res.status(200).json(day);
+    return day
   } catch (error) {
-    console.log(error)
-    res.status(500).json(error)
+    console.log(error);
+    res.status(500).json(error);
   }
 }
 
