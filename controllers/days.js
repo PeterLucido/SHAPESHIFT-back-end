@@ -3,9 +3,9 @@ import { Day } from "../models/day.js"
 
 async function index(req, res) {
   try {
-    const day = await Day.find({})
+    const profileId = req.user.profile
+    const day = await Day.find({ owner: profileId })
     .populate('date')
-    .sort({ date: 'desc' })
     res.status(200).json(day)
   } catch (err) {
     console.log(err)
@@ -33,12 +33,13 @@ async function create(req, res) {
 
 async function show(req, res) {
   try {
-    const day = await Day.findById(req.params.dayId)
-    .populate('date', 'sleep', 'meal', 'exercise', 'notes')
-    res.status(200).json(day)
+    const day = await Day.findById(req.params.dayId).populate(['owner', 'sleep', 'meal', 'exercise', 'notes']);
+    // console.log();
+    res.status(200).json(day);
+    return day
   } catch (error) {
-    console.log(error)
-    res.status(500).json(error)
+    console.log(error);
+    res.status(500).json(error);
   }
 }
 
@@ -69,10 +70,118 @@ async function deleteDay(req, res) {
   }
 }
 
+async function createNote (req, res) {
+  try {
+    const day = await Day.findById(req.params.dayId)
+    day.notes.push(req.body)
+    await day.save()
+    res.status(201).json(day)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json(error)
+  }
+}
+
+async function createSleep (req, res) {
+  try {
+    const day = await Day.findById(req.params.dayId)
+    day.sleep.push(req.body)
+    await day.save()
+    res.status(201).json(day)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json(error)
+  }
+}
+
+async function createMeal (req, res) {
+  try {
+    const day = await Day.findById(req.params.dayId)
+    day.meal.push(req.body)
+    await day.save()
+    res.status(201).json(day)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json(error)
+  }
+}
+
+async function createExercise (req, res) {
+  try {
+    const day = await Day.findById(req.params.dayId)
+    day.exercise.push(req.body)
+    await day.save()
+    res.status(201).json(day)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json(error)
+  }
+}
+
+async function updateNote (req, res) {
+  try {
+    const day = await Day.findById(req.params.dayId)
+    const note = day.notes.id(req.params.noteId)
+    note.set(req.body)
+    await day.save()
+    res.status(200).json(day)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json(error)
+  }
+}
+
+async function updateSleep (req, res) {
+  try {
+    const day = await Day.findById(req.params.dayId)
+    const sleep = day.sleep.id(req.params.sleepId)
+    sleep.set(req.body)
+    await day.save()
+    res.status(200).json(day)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json(error)
+  }
+}
+
+async function updateMeal (req, res) {
+  try {
+    const day = await Day.findById(req.params.dayId)
+    const meal = day.meal.id(req.params.mealId)
+    meal.set(req.body)
+    await day.save()
+    res.status(200).json(day)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json(error)
+  }
+}
+
+async function updateExercise (req, res) {
+  try {
+    const day = await Day.findById(req.params.dayId)
+    const exercise = day.exercise.id(req.params.exerciseId)
+    exercise.set(req.body)
+    await day.save()
+    res.status(200).json(day)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json(error)
+  }
+}
+
 export {
   index,
   create,
   show,
   update,
   deleteDay as delete,
+  createNote,
+  createSleep,
+  createMeal,
+  createExercise,
+  updateNote,
+  updateSleep,
+  updateMeal,
+  updateExercise,
 }
