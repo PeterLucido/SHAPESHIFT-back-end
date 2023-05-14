@@ -15,7 +15,6 @@ const sleepSchema = new Schema(
   {
     totalSleep: {
       type: Number,
-      required: true
     },
     sleepRating: Number
   },

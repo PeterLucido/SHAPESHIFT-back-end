@@ -33,7 +33,7 @@ async function create(req, res) {
 
 async function show(req, res) {
   try {
-    const day = await Day.findById(req.params.dayId).populate(['owner', 'sleep', 'meal', 'exercise', 'notes']);
+    const day = await Day.findById(req.params.dayId).populate(['owner', 'sleep', 'meal', 'exercise', 'notes', 'date']);
     // console.log();
     res.status(200).json(day);
     return day
@@ -49,7 +49,7 @@ async function update(req, res) {
       req.params.dayId,
       req.body,
       { new: true }
-    ).populate('date', 'sleep', 'meal', 'exercise', 'notes')
+    ).populate('owner', 'date', 'sleep', 'meal', 'exercise', 'notes')
     res.status(200).json(day)
   } catch (error) {
     console.log(error)
