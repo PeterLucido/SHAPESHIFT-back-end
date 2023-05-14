@@ -4,7 +4,7 @@ const Schema = mongoose.Schema
 
 const noteSchema = new Schema(
   {
-    text: {
+    content: {
       type: String,
     },
   },
