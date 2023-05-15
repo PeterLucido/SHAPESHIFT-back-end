@@ -117,59 +117,6 @@ async function createExercise (req, res) {
     res.status(500).json(error)
   }
 }
-
-async function updateNote (req, res) {
-  try {
-    const day = await Day.findById(req.params.dayId)
-    const note = day.notes.id(req.params.noteId)
-    note.set(req.body)
-    await day.save()
-    res.status(200).json(day)
-  } catch (error) {
-    console.log(error)
-    res.status(500).json(error)
-  }
-}
-
-async function updateSleep (req, res) {
-  try {
-    const day = await Day.findById(req.params.dayId)
-    const sleep = day.sleep.id(req.params.sleepId)
-    sleep.set(req.body)
-    await day.save()
-    res.status(200).json(day)
-  } catch (error) {
-    console.log(error)
-    res.status(500).json(error)
-  }
-}
-
-async function updateMeal (req, res) {
-  try {
-    const day = await Day.findById(req.params.dayId)
-    const meal = day.meal.id(req.params.mealId)
-    meal.set(req.body)
-    await day.save()
-    res.status(200).json(day)
-  } catch (error) {
-    console.log(error)
-    res.status(500).json(error)
-  }
-}
-
-async function updateExercise (req, res) {
-  try {
-    const day = await Day.findById(req.params.dayId)
-    const exercise = day.exercise.id(req.params.exerciseId)
-    exercise.set(req.body)
-    await day.save()
-    res.status(200).json(day)
-  } catch (error) {
-    console.log(error)
-    res.status(500).json(error)
-  }
-}
-
 export {
   index,
   create,
@@ -180,8 +127,4 @@ export {
   createSleep,
   createMeal,
   createExercise,
-  updateNote,
-  updateSleep,
-  updateMeal,
-  updateExercise,
 }
