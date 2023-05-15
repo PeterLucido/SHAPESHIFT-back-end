@@ -49,7 +49,7 @@ async function update(req, res) {
       req.params.dayId,
       req.body,
       { new: true }
-    ).populate('owner', 'date', 'sleep', 'meal', 'exercise', 'notes')
+    ).populate(['owner', 'date', 'sleep', 'meal', 'exercise', 'notes'])
     res.status(200).json(day)
   } catch (error) {
     console.log(error)
