@@ -23,23 +23,22 @@ async function create(req, res) {
       { new: true }
     )
     day.owner = profile
-    console.log(day)
     res.status(201).json(day)
-  } catch (error) {
-    console.log(error)
-    res.status(500).json(error)
+  } catch (err) {
+    console.log(err)
+    res.status(500).json(err)
   }
 }
 
 async function show(req, res) {
   try {
-    const day = await Day.findById(req.params.dayId).populate(['owner', 'sleep', 'meal', 'exercise', 'notes', 'date']);
-    // console.log();
-    res.status(200).json(day);
+    const day = await Day.findById(req.params.dayId)
+    .populate(['owner', 'sleep', 'meal', 'exercise', 'notes', 'date'])
+    res.status(200).json(day)
     return day
-  } catch (error) {
-    console.log(error);
-    res.status(500).json(error);
+  } catch (err) {
+    console.log(err)
+    res.status(500).json(err)
   }
 }
 
@@ -51,9 +50,9 @@ async function update(req, res) {
       { new: true }
     ).populate(['owner', 'date', 'sleep', 'meal', 'exercise', 'notes'])
     res.status(200).json(day)
-  } catch (error) {
-    console.log(error)
-    res.status(500).json(error)
+  } catch (err) {
+    console.log(err)
+    res.status(500).json(err)
   }
 }
 
@@ -64,9 +63,9 @@ async function deleteDay(req, res) {
     profile.days.remove({ _id: day._id })
     await profile.save()
     res.status(200).json(day)
-  } catch (error) {
-    console.log(error)
-    res.status(500).json(error)
+  } catch (err) {
+    console.log(err)
+    res.status(500).json(err)
   }
 }
 
@@ -76,9 +75,9 @@ async function createNote (req, res) {
     day.notes.push(req.body)
     await day.save()
     res.status(201).json(day)
-  } catch (error) {
-    console.log(error)
-    res.status(500).json(error)
+  } catch (err) {
+    console.log(err)
+    res.status(500).json(err)
   }
 }
 
@@ -88,9 +87,9 @@ async function createSleep (req, res) {
     day.sleep.push(req.body)
     await day.save()
     res.status(201).json(day)
-  } catch (error) {
-    console.log(error)
-    res.status(500).json(error)
+  } catch (err) {
+    console.log(err)
+    res.status(500).json(err)
   }
 }
 
@@ -100,9 +99,9 @@ async function createMeal (req, res) {
     day.meal.push(req.body)
     await day.save()
     res.status(201).json(day)
-  } catch (error) {
-    console.log(error)
-    res.status(500).json(error)
+  } catch (err) {
+    console.log(err)
+    res.status(500).json(err)
   }
 }
 
@@ -112,11 +111,12 @@ async function createExercise (req, res) {
     day.exercise.push(req.body)
     await day.save()
     res.status(201).json(day)
-  } catch (error) {
-    console.log(error)
-    res.status(500).json(error)
+  } catch (err) {
+    console.log(err)
+    res.status(500).json(err)
   }
 }
+
 export {
   index,
   create,
