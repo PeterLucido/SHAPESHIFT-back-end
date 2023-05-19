@@ -53,25 +53,6 @@ async function login(req, res) {
   }
 }
 
-async function changePassword(req, res) {
-  try {
-    const user = await User.findById(req.user._id)
-    if (!user) throw new Error('User not found')
-
-    const isMatch = user.comparePassword(req.body.password)
-    if (!isMatch) throw new Error('Incorrect password')
-
-    user.password = req.body.newPassword
-    await user.save()
-
-    const token = createJWT(user)
-    res.json({ token })
-    
-  } catch (err) {
-    handleAuthError(err, res)
-  }
-}
-
 /* --== Helper Functions ==-- */
 
 function handleAuthError(err, res) {
@@ -88,4 +69,7 @@ function createJWT(user) {
   return jwt.sign({ user }, process.env.SECRET, { expiresIn: '24h' })
 }
 
-export { signup, login, changePassword }
+export { 
+  signup,
+  login,
+}
